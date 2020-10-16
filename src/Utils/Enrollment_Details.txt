@@ -1,0 +1,47 @@
+Login Id (Is an email id)
+Correspondence Login Id (Correspondence Email ID can be same as your Login ID.)
+Mobile No: (Country Code drop down menu)(Mobile No text field)
+
+Company Details
+
+Company Name 
+Preferential Bidder (one checkbox saying yes)
+Registration Number
+Registered Address (Long Text box)
+Name of Partners/Directors (Long Text box)
+Bidder Type(Radio button - Indian, Foreign)
+City (Text)
+State(drop down)
+Postal Code(text)
+
+PAN/TAN number (Warnings: 
+PAN/TAN number must have 10 characters. For eg: AESTG2458A
+For Bidders who do not have PAN/TAN number may enter TEMPZ9999Z as the PAN/TAN number.)
+
+Establishment year: (drop down)
+Nature of business(text)
+
+Legal Status{Drop down- 
+Limited Company, 
+Undertaking, 
+Jointventure, 
+Partnership, 
+other}
+
+Company Category (drop down- 
+Micro unit as per MSME, 
+small unit as per MSME, 
+Medium unit as per MSME, 
+Ancillary unit, 
+Project Affected person of this company SSI, 
+other)
+
+Contact Details
+
+Title(Drop down- Mr, Mrs, Ms, Dr, Sri)
+Contact Name
+Date of Birth
+Designation
+Phone(In case of Land line- Phone Details eg: +91 044 22272449)
+
+Enter Captcha
