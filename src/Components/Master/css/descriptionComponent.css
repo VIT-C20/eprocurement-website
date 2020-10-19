@@ -1,0 +1,22 @@
+.container-3 .title-name {
+    position: relative;
+    min-height: 200px;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+
+.title-name h1 {
+    position: absolute;
+    bottom:25px;
+    left:50px;
+}
+
+.info-group {
+    margin:20px 40px;
+}
+
+.info-group label {
+    font-weight: bold;
+}
+

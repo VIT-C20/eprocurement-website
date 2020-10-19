@@ -1,0 +1,22 @@
+.container-1 {
+    display:flex;
+}
+
+.container-1 .title {
+    flex:left;
+    width:20%;
+    padding: 0;
+    height: 1000px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+}
+
+.container-1 .title li {
+    list-style: none;
+}
+
+.description {
+    flex:right;
+    width:80%;
+}

@@ -1,0 +1,18 @@
+.container-2 {
+    border-right: 1px solid #cdcdcd;
+    overflow-x:hidden;
+}
+
+.item-list li {
+    border-bottom: 1px solid #cdcdcd;
+    padding:10px;
+}
+
+.item-list li:hover {
+    background-color: #00d;
+    color: #fff;
+}
+
+.avatar {
+    margin-right:15px;
+}

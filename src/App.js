@@ -8,6 +8,7 @@ import Tenders from "./Pages/Tenders/Tenders";
 import Profile from './Pages/Profile/Profile';
 import TenderDetails from './Pages/Tenders/TenderDetails'
 import './App.css';
+import Master from './Components/Master/Master';
 
 export default class App extends Component {
   render() {
@@ -17,7 +18,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/home" component={Tenders} />
             <Route exact path="/tender/:tenderId" component={TenderDetails} />
-            {/* <Route exact path="/tender/:tenderId/history" component={TenderHistory} /> */}
+            <Route exact path="/master" component={Master} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={Profile}/>
             <Route exact path="/signup" component={SignUp} />
