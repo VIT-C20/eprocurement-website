@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export default function TenderCard({ tender }) {
     return (
         <div key={tender._id} className="container mt-3">
+        {console.log(tender)}
             <Card className="text-center">
             <Card.Header>{tender.host.orgName}</Card.Header>
             <Card.Body>
@@ -16,7 +17,7 @@ export default function TenderCard({ tender }) {
                 <Button variant="primary">View Details</Button>
                 </Link>
             </Card.Body>
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
+            <Card.Footer className="text-muted">{tender.createdAt}</Card.Footer>
         </Card>
         </div>
     )

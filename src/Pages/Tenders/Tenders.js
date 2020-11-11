@@ -18,7 +18,6 @@ export default class Tenders extends Component {
                 tenders : res.data,
                 isLoading:false
             })
-            console.log(res.data)
         })
         .catch(err => console.log(err))
     }
@@ -39,7 +38,6 @@ export default class Tenders extends Component {
                 </div>
             )
         }
-        
     }
 }
 

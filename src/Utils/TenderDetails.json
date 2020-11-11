@@ -1,0 +1,36 @@
+{
+    "tender":{
+        "OrganizationChain": "ABC",
+        "TenderReferenceNumber": "99/AD",
+        "TenderId": "2020_DDA_12345_1",
+        "TenderType": "Open",
+        "TenderCategory":"Works",
+        "PaymentMode": "Offline",
+        "FormOfContract": "Percentage",
+        "NoOfCovers":"2",
+        "Documents": [ 
+            "Scanned copy of Proof of registration in Contractors Registration Board (CRB) of DDA.",
+            "Scanned copy of Earnest Money deposited through RTGS/NEFT",
+            "Scanned copy of Proof of Payment of E-tendering fee including GST in CRB of DDA.",
+            "Scanned copy of GST Registration and up to date returns filed",
+            "Scanned copy of Tender Acceptance Letter (it is mandatory to be given on Company Letter Head)",
+            "Scanned copy of Certificate of registration with EPFO and ESIC.",
+            "Integrity Pact (Page No. 74 of NIT).",
+            "PRICEBID.xls"
+        ],
+        "TenderFee" : "0.00",
+        "FeePayableTo" : "Nil",
+        "TenderFeeExemptionAllowed" : "No",
+        "FeePayableAt" : "Nil",
+        "EMDAmount":"13,189",
+        "EMDFeeType":"percentage",
+        "EMDPayableTo":"SR_AO_CAU_EZ_DDA",
+        "EMD through BG/ST or EMD Exemption Allowed":"No",
+        "EMDPercentage":"2.0%",
+        "EMDPayableAt":"New Delhi",
+        "Title": "M/o Various Scheme under Nazul A/C-II EZ Sub Head Repair of footpath and other miscellaneous work in Green Belt near CWG Village.",
+        "WorkDescription": "M/o Various Scheme under Nazul A/C-II EZ Sub Head Repair of footpath and other miscellaneous work in Green Belt near CWG Village.",
+        "NDAOrPreQualification":"Please refer Tender documents."
+
+    }
+}

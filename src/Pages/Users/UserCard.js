@@ -8,12 +8,12 @@ export default function UserCard({ user }) {
             <Card>
                 <Card.Header>{user.role}</Card.Header>
                 <Card.Body>
-                    <Card.Title>Special title treatment</Card.Title>
+                    <Card.Title>{user.orgName}</Card.Title>
                     <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
+                    {user.orgDescription}
                     </Card.Text>
                     <Link to={`/users/${user._id}`}>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">View More</Button>
                     </Link>
                 </Card.Body>
             </Card>

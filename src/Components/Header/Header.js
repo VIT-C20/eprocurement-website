@@ -48,6 +48,7 @@ export default class Header extends Component {
             console.log(res.data);
             localStorage.setItem('IdToken', `Bearer ${res.data.token}`);
             localStorage.setItem('Role', res.data.role);
+            localStorage.setItem('UserId', jwtDecode(localStorage.IdToken)._id)
             this.setState({
                 role: res.data.role,
                 authenticated: true
