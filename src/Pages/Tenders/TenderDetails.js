@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {Link} from 'react-router-dom'
 import {tender} from '../../Utils/tenderExample';
+import "./CSS/tenderDetails.css";
 
 export default class TenderDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mine: true,
+            mine: false,
             edit: false,
             loading: false
         }
@@ -63,34 +64,40 @@ export default class TenderDetails extends Component {
                         <BreadcrumbItem><Link to='/home'>Tenders</Link></BreadcrumbItem>
                         <BreadcrumbItem>Tender Details</BreadcrumbItem>
                 </Breadcrumb>
-                <div className="row mb-3">
-                    <div className="col-12 col-md-4 col-lg-4 mb-1">
+                <div className="row dashboard-container">
+                    <div>
                         <h3>Applied Bids: {tender.bidCount}</h3>
                     </div>
-                    <div className="col-12 col-md-4 col-lg-4 mb-1">
+
+                    <div className="d-btn-container">
                         {
                             this.state.mine? 
                             <Link to={`/user/`}>
                             <Button color="success"> <span className="fa fa-eye fa-lg"> View Bids</span></Button>
                             </Link>
                             :
-                            <Link to={`/user/`}>
+                            <Link to={`/tender/${tender.tenderId}/applyTender`}>
                             <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
                             </Link>
                         }
-                    </div>
-                    <div className="col-12 col-md-4 col-lg-4 mb-1">
+
                         <Link to={`/user/`}>
                             <Button color="warning"> <span className="fa fa-history fa-lg"> History</span></Button>
                             </Link>
                     </div>
+    
                 </div>
                 <div className="row mb-2">
                     <h4 className="col-6">Basic Details</h4>
                     {
-                        (this.state.mine)?
-                            <Button className="offset-3 offset-md-4 " onClick={() => {this.setState({ edit: true})
+                        (this.state.mine && !this.state.edit)?
+                            <Button className="offset-3 offset-md-4 " color="success" onClick={() => {this.setState({ edit: true})
                             }}><span className="fa fa-pencil"> Edit</span></Button>
+                        : this.state.mine ?
+                            <Button className="offset-3 offset-md-4 " color="danger" onClick={() => {
+                            this.setState({ edit: false})
+                            window.location.reload(false)
+                            }}><span className="fa fa-times"> Cancel</span></Button>
                         :null
                     }
                     
@@ -100,9 +107,9 @@ export default class TenderDetails extends Component {
                             (!this.state.mine)?
                             <FormGroup className="row">
                                 <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
-                                <Input className="col-4" type="text" id="orgChain" name="orgChain" onChange={this.handleChange} disabled value={tender.orgChain} required />
+                                <Input className="col-4 col-md-5" type="text" id="orgChain" name="orgChain" onChange={this.handleChange} disabled value={tender.orgChain} required />
                                 <Link to={`/user/`}>
-                                    <Button className="ml-1" color="primary" >View Profile</Button>
+                                    <Button title="View Profile" className="ml-1 ml-md-4" color="primary" ><span className="fa fa-address-card-o fa-lg"></span></Button>
                                 </Link>
                             </FormGroup>
                             :
@@ -113,8 +120,18 @@ export default class TenderDetails extends Component {
                         }
 
                     <FormGroup className="row">
+                        <Label htmlFor="tenderId" className="col-4 offset-1">Tender ID</Label>
+                        <Input className="col-6" type="text" id="tenderId" name="tenderId" defaultValue={tender.tenderId} readOnly required />
+                    </FormGroup>
+
+                    <FormGroup className="row">
                         <Label htmlFor="tenderKey" className="col-4 offset-1">Tender Key</Label>
-                        <Input className="col-6" type="text" id="tenderKey" name="tenderKey" onChange={this.handleChange} defaultValue={tender.tenderKey} readOnly={!this.state.edit} required />
+                        <Input className="col-6" type="text" id="tenderKey" name="tenderKey"  defaultValue={tender.tenderKey} readOnly required />
+                    </FormGroup>
+
+                    <FormGroup className="row">
+                        <Label htmlFor="tenderStatus" className="col-4 offset-1">Tender Status</Label>
+                        <Input className="col-6" type="text" id="tenderStatus" name="tenderStatus"  defaultValue={tender.tenderKey} readOnly required />
                     </FormGroup>
 
                     <FormGroup className="row">
@@ -230,14 +247,16 @@ export default class TenderDetails extends Component {
                     
                     {
                         (this.state.edit)?
-                            <div className="row">
-                            <Button type="submit" value="submit" color="success" className="offset-3 col-2 mb-4"><span className="fa fa-paper-plane fa-lg"> Update</span></Button>
+            
+                            <div className="btn-container">
+                                <Button type="submit" value="submit" color="success"><span className="fa fa-paper-plane fa-lg"> Update</span></Button>
 
-                            <Button color="danger" onClick={() => {
-                                this.setState({edit: false})
-                                window.location.reload(false);
-                                }} className="offset-2 col-2 mb-4"><span className="fa fa-times fa-lg"> Cancel</span></Button>
+                                <Button color="danger" onClick={() => {
+                                    this.setState({edit: false})
+                                    window.location.reload(false);
+                                    }} ><span className="fa fa-times fa-lg"> Cancel</span></Button>
                             </div>
+                            
                         :null
                     }
                 </Form>
@@ -271,22 +290,27 @@ export default class TenderDetails extends Component {
                                     }}><span className="fa fa-trash"> Remove</span></Button>
                                     :null
                                 }
+                                <hr/>
                             </Form>
                         ))
                         :null
                     }
+                    <div className="doc-btn-container mt-4">
                     {
                         this.state.mine ?
-                        <Button onClick={this.toggleModal}color="danger" className="col-2 offset-5 mb-4"> <span className="fa fa-plus-circle fa-lg"> Add Document</span></Button>
+                        <Button onClick={this.toggleModal} color="warning" > <span className="fa fa-plus-circle fa-lg"> Add Document</span></Button>
                         :null
                     }
                     {
                         !this.state.mine ?
                         <Link to={`/user/`}>
-                        <Button color="success" className="col-2 offset-5 mb-4"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
+                        <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
                         </Link>
                         :null 
                     }
+                    </div>
+
+                    {/* Modal component */}
                     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}> Add Document</ModalHeader>
                     <ModalBody>

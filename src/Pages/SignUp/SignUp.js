@@ -56,8 +56,10 @@ export default class SignUp extends Component {
                         <BreadcrumbItem>Sign Up</BreadcrumbItem>
                     </Breadcrumb>
                 </div>
-                <div className="signUpForm">
-                    <Form onSubmit={this.handleSubmit}>
+                <div className="signUpForm" style={{border:"1px solid #ccc",padding:"20px 0px",borderRadius:"10px"}}>
+                    <Form  onSubmit={this.handleSubmit}>
+                            <center style={{marginBottom:"30px"}}><h2>Register</h2></center>
+
                             <FormGroup className="row">
                                 <Label htmlFor="username" className="col-4 offset-1">Username</Label>
                                 <Input className="col-6" type="text" id="username" name="username" onChange={this.handleChange} required />
@@ -136,7 +138,7 @@ export default class SignUp extends Component {
                                 <Input type="date" id="establishedDate" name="establishedDate" onChange={this.handleChange} required  className="col-6"/>
                             </FormGroup>
 
-                            <Button type="submit" value="submit" color="success" className="col-2 offset-5 mb-4">Register</Button>
+                            <Button type="submit" value="submit" color="success" className="offset-5">Register</Button>
                             {/* {(this.state.error !== '')? <p className="text-danger mt-2">{this.state.error}</p>: null} */}
                         </Form>
                 </div>

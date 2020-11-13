@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup,Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import "./CSS/createTender.css";
 
 export class CreateTender extends Component {
     constructor(props) {
@@ -201,13 +202,16 @@ export class CreateTender extends Component {
                                     console.log(this.documents);
                                     this.setState({isModalOpen: false})
                                 }}><span className="fa fa-trash"> Remove</span></Button>
+                                <hr/>
                             </Form>
                         ))
                         :null
                     }
-                    <Button onClick={this.toggleModal}color="danger" className="col-2 offset-5 mb-4"> <span className="fa fa-plus-circle fa-lg"> Add Document</span></Button>
+                    <div className="btn-container">
+                        <Button onClick={this.toggleModal} color="warning"> <span className="fa fa-plus-circle fa-lg"> Add Document</span></Button>
 
-                    <Button type="submit" value="submit" color="success" className="col-2 offset-5 mb-4"><span className="fa fa-paper-plane fa-lg"> Submit</span></Button>
+                        <Button type="submit" value="submit" color="success"><span className="fa fa-paper-plane fa-lg"> Submit</span></Button>
+                    </div>
                 </Form>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}> Add Document</ModalHeader>

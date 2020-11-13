@@ -54,6 +54,7 @@ export default class Header extends Component {
                 authenticated: true
             })
             this.toggleModal();
+            
         })
         .catch(err => {
             this.setState({

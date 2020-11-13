@@ -5,7 +5,8 @@ import Header from "./Components/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp";
 import Users from "./Pages/Users/Users";
 import Tenders from "./Pages/Tenders/Tenders";
-import Profile from './Pages/Profile/Profile';
+import ApplyTender from "./Pages/Tenders/ApplyTender";
+import UserProfile from './Pages/Profile/UserProfile';
 import TenderDetails from './Pages/Tenders/TenderDetails';
 import CreateTender from './Pages/Tenders/CreateTender'
 import './App.css';
@@ -19,9 +20,9 @@ export default class App extends Component {
             <Route exact path="/home" component={Tenders} />
             <Route exact path="/tender/:tenderId" component={TenderDetails} />
             {/* <Route exact path="/tender/:tenderId/history" component={TenderHistory} /> */}
-            {/* <Route exact path="/tender/:tenderId/applyTender" component={ApplyTender} /> */}
+            <Route exact path="/tender/:tenderId/applyTender" component={ApplyTender} />
             <Route exact path="/users" component={Users} />
-            <Route exact path="/users/:userId" component={Profile}/>
+            <Route exact path="/users/:userId" component={UserProfile}/>
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/createTender" component={CreateTender} />

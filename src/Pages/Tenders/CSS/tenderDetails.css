@@ -1,0 +1,27 @@
+.dashboard-container {
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0 20px 0;
+}
+
+.dashboard-container div {
+    flex-grow:1;
+}
+
+.d-btn-container {
+    display:flex;
+    justify-content: space-between;
+}
+
+.btn-container {
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:space-evenly;
+}  
+
+.doc-btn-container {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    
+}

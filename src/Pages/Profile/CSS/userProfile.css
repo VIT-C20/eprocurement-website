@@ -1,0 +1,51 @@
+.profile-container {
+    padding:20px;
+    background-color: #eee;
+    opacity:0.9;
+}
+
+.profile-header {
+    display:flex;  
+    flex-wrap: wrap; 
+    margin:20px 40px; 
+}
+
+.profile-header img {
+    border-radius:50%;
+
+}
+
+.org-details,.work-exp {
+    margin-left:50px;
+    margin-top:30px;
+
+}
+
+.org-profile-image img {
+    box-sizing: border-box;
+    height:200px;
+} 
+
+.profile-footer {
+    display:flex;
+    flex-direction:row;
+}
+
+.address,.contact-details {
+    display:flex;
+    flex-grow:1;
+    flex-direction:column;
+    align-items:space-between;
+}
+
+.address {
+    margin-left:50px;
+}
+
+b {
+    padding:10px;
+    margin-right:20px;
+}
+
+
+
