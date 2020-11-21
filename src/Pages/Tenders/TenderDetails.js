@@ -10,7 +10,8 @@ export default class TenderDetails extends Component {
         this.state = {
             mine: false,
             edit: false,
-            loading: false
+            loading: false,
+            isModalOpen: false
         }
         this.documents = []
         this.document = {
