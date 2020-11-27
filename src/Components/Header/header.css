@@ -1,0 +1,21 @@
+Button > span {
+    opacity:0.8;
+    color:#fff;
+    font-size: 1.5em;
+}
+
+span:hover {
+    opacity: 1;
+}
+
+.profile-btn {
+    background-color: rgba(0,200,0,0.8);
+    
+}
+
+.profile-btn  span{
+    color:#fff;
+}
+
+
+

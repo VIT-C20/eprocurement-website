@@ -1,50 +1,128 @@
 .profile-container {
-    padding:20px;
-    background-color: #eee;
-    opacity:0.9;
+  padding: 20px 40px;
+  background-color: #eee;
+  opacity: 0.9;
+}
+
+.profile-footer div {
+  margin:10px auto;
 }
 
 .profile-header {
-    display:flex;  
-    flex-wrap: wrap; 
-    margin:20px 40px; 
+    position: relative;    
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 40px;
 }
 
 .profile-header img {
-    border-radius:50%;
-
+  border-radius: 50%;
+  margin-right: 40px;
 }
 
-.org-details,.work-exp {
-    margin-left:50px;
-    margin-top:30px;
-
+.org-description,
+.work-exp {
+  /* margin-left: 50px; */
+  margin-top: 30px;
+  text-align: justify;
 }
 
 .org-profile-image img {
-    box-sizing: border-box;
-    height:200px;
-} 
+  box-sizing: border-box;
+  height: 200px;
+}
 
 .profile-footer {
-    display:flex;
-    flex-direction:row;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.address,.contact-details {
-    display:flex;
-    flex-grow:1;
-    flex-direction:column;
-    align-items:space-between;
+.editForm-header {
+    position: relative;
+    margin:20px;
 }
+.edit-btn {
+    position: absolute;
+    right:0;
+}
+
+.editForm-header Button {
+    position: absolute;
+    right:0;
+    top:0;
+} 
 
 .address {
-    margin-left:50px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: justify;
 }
+
+.contact-details {
+  flex-grow: 1;  
+}
+
+.contact {
+  display: flex;
+}
+
 
 b {
-    padding:10px;
-    margin-right:20px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+/* .org-description .address .contact-details .licenses .work-experience {
+  padding-top: 100px;
+} */
+
+.licenses span,
+.work-experience span {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.licenses Button,
+.work-experience Button {
+  margin-top: 10px;
+}
+
+.license-container ,.work-exp-container {
+  display: flex;
+}
+
+.license-label p, .work-exp-label p{
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 
+@media only screen and (max-width:360px) {
+  .profile-container div{
+    margin: 0px;
+    /* padding: 0px; */
+  }
+
+  .org-profile-image img {
+    height:80px;
+    margin-right: 10px;
+  }
+
+  .org-details {
+    line-height: 0.9em;
+  }
+
+  .org-description {
+    padding-top: 10px;
+  }
+
+  .contact-details {
+    padding-top: 20px;
+  }
+
+}

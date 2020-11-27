@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import "./signup.css";
+import axios from 'axios'
 
 // const required = (val) => val && val.length;
 // const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -18,8 +19,8 @@ export default class SignUp extends Component {
             password: '',
             companyEmail: '',
             role: 'Bidder',
-            companyName: '',
-            companyDetails: '',
+            orgName: '',
+            orgDescription: '',
             address: '',
             city: '',
             state: '',
@@ -44,6 +45,12 @@ export default class SignUp extends Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log(this.state)
+        axios.post('/users/signup', this.state)
+        .then(res => {
+            console.log(res.data)
+            alert(res.data.status);
+        })
+        .catch(err => console.log(err))
     }
 
 
@@ -79,8 +86,8 @@ export default class SignUp extends Component {
                             </FormGroup>
 
                             <FormGroup className="row">
-                                <Label htmlFor="companyName" className="col-4 offset-1">Company Name</Label>
-                                <Input type="text" id="companyName" name="companyName" onChange={this.handleChange} required  className="col-6"/>
+                                <Label htmlFor="orgName" className="col-4 offset-1">Company Name</Label>
+                                <Input type="text" id="orgName" name="orgName" onChange={this.handleChange} required  className="col-6"/>
                             </FormGroup>
 
                             <FormGroup className="row">
@@ -89,8 +96,8 @@ export default class SignUp extends Component {
                             </FormGroup>
 
                             <FormGroup className="row">
-                                <Label htmlFor="companyDetails" className="col-4 offset-1">Company Details</Label>
-                                <Input type="textarea" id="companyDetails" name="companyDetails" onChange={this.handleChange} required  className="col-6"/>
+                                <Label htmlFor="orgDescription" className="col-4 offset-1">Company Details</Label>
+                                <Input type="textarea" id="orgDescription" name="orgDescription" onChange={this.handleChange} required  className="col-6"/>
                             </FormGroup>
 
                             <FormGroup className="row">

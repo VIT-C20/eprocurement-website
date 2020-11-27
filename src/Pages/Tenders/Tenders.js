@@ -24,11 +24,17 @@ export default class Tenders extends Component {
     
     render() {
         if(!this.state.isLoading){
-            return (
-            <div>
-                {this.state.tenders.map((tender) => <TenderCard tender={tender}/>)}
-            </div>
-            )
+            if(this.state.tenders.length === 0){
+                return <div className="container">
+                    <h4>No tenders available currently ...</h4>
+                </div>
+            }else{
+                return (
+                    <div>
+                        {this.state.tenders.map((tender) => <TenderCard tender={tender}/>)}
+                    </div>
+                )
+            }
         } else {
             return(
                 <div className="container mt-10">

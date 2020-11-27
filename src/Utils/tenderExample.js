@@ -1,4 +1,7 @@
 export const tender = {
+    id: 'gfeuwgf',
+    status: 'open',
+    bidCount: 3,
     orgChain: 'Organization A',
     tenderKey: 'tender A',
     tenderType: 'abc',
@@ -18,7 +21,6 @@ export const tender = {
     bidOpeningDate: '2/2/2020',
     bidClosingDate: '5/3/2020',
     resultDate: '7/3/2020',
-    bidCount: 3,
     publishedDate: '2/2/2020',
     documents: [
         {
@@ -26,5 +28,6 @@ export const tender = {
             documentDescription: 'description',
             documentLink: 'https://www.google.co.in/'
         }
-    ]
+    ],
+    winnerBidderId: 'bdsfgjf'
 } 

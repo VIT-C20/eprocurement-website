@@ -3,6 +3,7 @@ import { Navbar, Nav, NavbarToggler, NavItem, Collapse, Button, Modal, ModalHead
 import { Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import "./header.css";
 
 export default class Header extends Component {
     constructor(props) {
@@ -94,7 +95,7 @@ export default class Header extends Component {
     render() {
         return (
             <div className="mb-1">
-            <Navbar dark expand="md" fixed="top">
+            <Navbar style={{background:"rgba(90, 112, 224, 0.8)",textColor:"#fff"}} dark expand="md" fixed="top">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar >
@@ -146,13 +147,13 @@ export default class Header extends Component {
                                 <Nav className="mt-2 ml-auto" navbar>
                                 <NavItem>
                                     <Button className="mb-2 mr-3" color="success" onClick={this.toggleModal}>
-                                        <span className="fa fa-sign-in fa-lg"> Log In </span>
+                                        <span className="fa fa-sign-in fa-lg header-btn"> Log In </span>
                                     </Button>
                                 </NavItem>
                                 <NavItem>
                                 <Link to="/signup" >
                                     <Button  color="danger">
-                                        <span className="fa fa-user-plus fa-lg"> Register</span>
+                                        <span className="fa fa-user-plus fa-lg header-btn"> Register</span>
                                     </Button>
                                 </Link>
                                 </NavItem>
@@ -160,13 +161,15 @@ export default class Header extends Component {
                             ):(
                                 <Nav className="mt-2 ml-auto" navbar>
                                 <NavItem>
-                                    <Button className="mb-2 mr-3" color="success" onClick={this.toggleModal}>
+                                    <Button className="mb-2 mr-3 profile-btn" color="success">
+                                        <Link to={`/users/${localStorage.UserId}`}>
                                         <span className="fa fa-lg fa-user-circle-o"> My Profile </span>
+                                        </Link>
                                     </Button>
                                 </NavItem>
                                 <NavItem>
                                     <Button color="danger" onClick={this.logout}>
-                                        <span className="fa fa-sign-out fa-lg">Logout</span>
+                                        <span className="fa fa-sign-out fa-lg header-btn">Logout</span>
                                     </Button>
                                 </NavItem>
                             </Nav>

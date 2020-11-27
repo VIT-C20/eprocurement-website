@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup,Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import "./CSS/createTender.css";
+// import axios from "axios";
 
 export class CreateTender extends Component {
     constructor(props) {
@@ -26,7 +27,8 @@ export class CreateTender extends Component {
             pincode: '',
             bidOpeningDate: '',
             bidClosingDate: '',
-            resultDate: ''
+            resultDate: '',
+            status: 'Open'
         }
         this.documents = []
         this.document = {
@@ -49,7 +51,19 @@ export class CreateTender extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(this.state);
-        
+        console.log(this.documents);
+        const payload = {...this.state, documents: [...this.documents]}
+        console.log(payload)
+        // axios.post('/tender', payload, {
+        //     headers: {
+        //         Authorization: localStorage.IdToken
+        //     }
+        // })
+        // .then(res => {
+        //     console.log(res.data)
+        //     alert(res.data)
+        // })
+        // .catch(err => console.log(err))
     }
 
     addDocument = (event) => {

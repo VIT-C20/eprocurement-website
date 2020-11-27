@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {Link} from 'react-router-dom'
 import {tender} from '../../Utils/tenderExample';
+// import axios from 'axios'
 import "./CSS/tenderDetails.css";
 
 export default class TenderDetails extends Component {
@@ -10,7 +11,7 @@ export default class TenderDetails extends Component {
         this.state = {
             mine: false,
             edit: false,
-            loading: false,
+            isLoading: false,
             isModalOpen: false
         }
         this.documents = []
@@ -19,7 +20,22 @@ export default class TenderDetails extends Component {
             documentDescription: '',
             documentLink: ''
         }
+        this.tender = {}
     }
+
+    // componentDidMount() {
+    //     axios.get(this.props.match.url)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         this.tender = res.data
+    //         if (localStorage.UserId && res.data.host === localStorage.UserId)
+    //             this.setState({
+    //                 mine: true,
+    //             });
+    //         this.setState({ isLoading: false });
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 
     toggleModal = () => {
         this.setState({ isModalOpen: !this.state.isModalOpen });

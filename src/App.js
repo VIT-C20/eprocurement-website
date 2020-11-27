@@ -8,6 +8,7 @@ import Tenders from "./Pages/Tenders/Tenders";
 import ApplyTender from "./Pages/Tenders/ApplyTender";
 import UserProfile from './Pages/Profile/UserProfile';
 import TenderDetails from './Pages/Tenders/TenderDetails';
+import TenderHistory from './Pages/Tenders/TenderHistory';
 import CreateTender from './Pages/Tenders/CreateTender'
 import './App.css';
 
@@ -19,7 +20,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/home" component={Tenders} />
             <Route exact path="/tender/:tenderId" component={TenderDetails} />
-            {/* <Route exact path="/tender/:tenderId/history" component={TenderHistory} /> */}
+            <Route exact path="/tender/:tenderId/history" component={TenderHistory} />
             <Route exact path="/tender/:tenderId/applyTender" component={ApplyTender} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UserProfile}/>
