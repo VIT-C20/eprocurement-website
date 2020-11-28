@@ -95,7 +95,7 @@ export default class Header extends Component {
     render() {
         return (
             <div className="mb-1">
-            <Navbar style={{background:"rgba(90, 112, 224, 0.8)",textColor:"#fff"}} dark expand="md" fixed="top">
+            <Navbar dark expand="md" fixed="top">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar >
@@ -178,6 +178,7 @@ export default class Header extends Component {
                         </Collapse>
                     </div>
                 </Navbar>
+
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}> Login</ModalHeader>
                     <ModalBody>
