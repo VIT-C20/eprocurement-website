@@ -54,6 +54,7 @@ export default class Header extends Component {
                 role: res.data.role,
                 authenticated: true
             })
+            this.props.setProfile({orgChain: res.data.orgName, role: res.data.role})
             this.toggleModal();
             
         })
@@ -115,7 +116,7 @@ export default class Header extends Component {
                                 {
                                     (this.state.authenticated) ? (
                                         <NavItem>
-                                            <NavLink className="nav-link" to="/myTender" >
+                                            <NavLink className="nav-link" to="/tender/host/:hostId" >
                                                 <span className="fa fa-list fa-lg"></span> My Tenders
                                             </NavLink>
                                         </NavItem>
@@ -137,11 +138,11 @@ export default class Header extends Component {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                {/* <NavItem>
                                     <NavLink className="nav-link" to="/contactus" >
                                         <span className="fa fa-address-card fa-lg"></span> Contact us
                                 </NavLink>
-                                </NavItem>
+                                </NavItem> */}
                             </Nav>
                             {(!this.state.authenticated)?(
                                 <Nav className="mt-2 ml-auto" navbar>

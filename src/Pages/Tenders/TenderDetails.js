@@ -25,7 +25,7 @@ export default class TenderDetails extends Component {
             console.log(res.data)
             this.tender = res.data
             console.log(this.tender)
-            if (localStorage.UserId && res.data.Host === localStorage.UserId)
+            if (localStorage.UserId && res.data.host === localStorage.UserId)
                 this.setState({
                     mine: true,
                 });
@@ -39,13 +39,30 @@ export default class TenderDetails extends Component {
     }
 
     handleChange = (event) => {
+        if(event.target.name === 'status'){
+            this.tender[event.target.name] = event.target.value.toUpperCase();
+        } else
         this.tender[event.target.name] = event.target.value
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(this.tender);
-        
+        axios.put(`/tender/${this.tender.id}`, this.tender, {
+            headers: {
+                Authorization: localStorage.IdToken,
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            alert('Tender edited')
+            this.setState({
+                isLoading: true,
+                edit: false
+            });
+            this.componentDidMount()
+        })
+        .catch(err => console.log(err))
     }
 
     addDocument = (event) => {
@@ -99,16 +116,16 @@ export default class TenderDetails extends Component {
                     <div className="d-btn-container">
                         {
                             this.state.mine? 
-                            <Link to={`/user/`}>
+                            <Link to={`/tender/${this.tender.id}/viewBids`}>
                             <Button color="success"> <span className="fa fa-eye fa-lg"> View Bids</span></Button>
                             </Link>
                             :
-                            <Link to={`/tender/${tender.tenderId}/applyTender`}>
+                            <Link to={`/tender/${this.tender.id}/applyTender`}>
                             <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
                             </Link>
                         }
 
-                        <Link to={`/user/`}>
+                            <Link to={`/tender/${this.tender.id}/history`}>
                             <Button color="warning"> <span className="fa fa-history fa-lg"> History</span></Button>
                             </Link>
                     </div>
@@ -133,16 +150,16 @@ export default class TenderDetails extends Component {
                         {
                             (!this.state.mine)?
                             <FormGroup className="row">
-                                <Label htmlFor="OrgChain" className="col-4 offset-1">Organization Chain</Label>
-                                <Input className="col-4 col-md-5" type="text" id="OrgChain" name="OrgChain"  disabled value={this.tender.OrgChain} required />
+                                <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
+                                <Input className="col-4 col-md-5" type="text" id="orgChain" name="orgChain"  disabled value={this.tender.orgChain} required />
                                 <Link to={`/user/`}>
                                     <Button title="View Profile" className="ml-1 ml-md-4" color="primary" ><span className="fa fa-address-card-o fa-lg"></span></Button>
                                 </Link>
                             </FormGroup>
                             :
                             <FormGroup className="row">
-                                <Label htmlFor="OrgChain" className="col-4 offset-1">Organization Chain</Label>
-                                <Input className="col-6" type="text" id="OrgChain" name="OrgChain" readOnly defaultValue={this.tender.OrgChain} required />
+                                <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
+                                <Input className="col-6" type="text" id="orgChain" name="orgChain" readOnly defaultValue={this.tender.orgChain} required />
                             </FormGroup>
                         }
 
@@ -162,40 +179,40 @@ export default class TenderDetails extends Component {
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="TenderType" className="col-4 offset-1">Tender Type</Label>
-                        <Input className="col-6" type="text" id="TenderType" name="TenderType" onChange={this.handleChange} defaultValue={this.tender.TenderType} readOnly={!this.state.edit} required />
+                        <Label htmlFor="tenderType" className="col-4 offset-1">Tender Type</Label>
+                        <Input className="col-6" type="text" id="tenderType" name="tenderType" onChange={this.handleChange} defaultValue={this.tender.tenderType} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="TenderCategory" className="col-4 offset-1">Tender Category</Label>
-                        <Input className="col-6" type="text" id="TenderCategory" name="TenderCategory" onChange={this.handleChange} defaultValue={this.tender.TenderCategory} readOnly={!this.state.edit} required />
+                        <Label htmlFor="tenderCategory" className="col-4 offset-1">Tender Category</Label>
+                        <Input className="col-6" type="text" id="tenderCategory" name="tenderCategory" onChange={this.handleChange} defaultValue={this.tender.tenderCategory} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="PaymentMode" className="col-4 offset-1">Payment Mode</Label>
-                        <Input className="col-6" type="text" id="PaymentMode" name="PaymentMode" onChange={this.handleChange} defaultValue={this.tender.PaymentMode} readOnly={!this.state.edit} required />
+                        <Label htmlFor="paymentMode" className="col-4 offset-1">Payment Mode</Label>
+                        <Input className="col-6" type="text" id="paymentMode" name="paymentMode" onChange={this.handleChange} defaultValue={this.tender.paymentMode} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="NoCovers" className="col-4 offset-1">No. of Covers</Label>
-                        <Input className="col-6" type="text" id="NoCovers" name="NoCovers" onChange={this.handleChange} defaultValue={this.tender.NoCovers} readOnly={!this.state.edit} required />
+                        <Label htmlFor="noCovers" className="col-4 offset-1">No. of Covers</Label>
+                        <Input className="col-6" type="text" id="noCovers" name="noCovers" onChange={this.handleChange} defaultValue={this.tender.noCovers} readOnly={!this.state.edit} required />
                     </FormGroup>
                     
                     <h4 className="col-6">Tender Fee Details</h4>
 
                     <FormGroup className="row">
-                        <Label htmlFor="TenderFee" className="col-4 offset-1">Tender Fee in Rs.</Label>
-                        <Input className="col-6" type="text" id="TenderFee" name="TenderFee" onChange={this.handleChange} defaultValue={this.tender.TenderFee} readOnly={!this.state.edit} required />
+                        <Label htmlFor="tenderFee" className="col-4 offset-1">Tender Fee in Rs.</Label>
+                        <Input className="col-6" type="text" id="tenderFee" name="tenderFee" onChange={this.handleChange} defaultValue={this.tender.tenderFee} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="FeePayableTo" className="col-4 offset-1">Fee Payable To</Label>
-                        <Input className="col-6" type="text" id="FeePayableTo" name="FeePayableTo" onChange={this.handleChange} defaultValue={this.tender.FeePayableTo} readOnly={!this.state.edit} required />
+                        <Label htmlFor="feePayableTo" className="col-4 offset-1">Fee Payable To</Label>
+                        <Input className="col-6" type="text" id="feePayableTo" name="feePayableTo" onChange={this.handleChange} defaultValue={this.tender.feePayableTo} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="FeePayableAt" className="col-4 offset-1">Fee Payable At</Label>
-                        <Input className="col-6" type="text" id="FeePayableAt" name="FeePayableAt" onChange={this.handleChange} defaultValue={this.tender.FeePayableAt} readOnly={!this.state.edit} required />
+                        <Label htmlFor="feePayableAt" className="col-4 offset-1">Fee Payable At</Label>
+                        <Input className="col-6" type="text" id="feePayableAt" name="feePayableAt" onChange={this.handleChange} defaultValue={this.tender.feePayableAt} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <h4 className="col-6">Work Item Details</h4>
@@ -225,13 +242,13 @@ export default class TenderDetails extends Component {
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="locatiion" className="col-4 offset-1">location</Label>
-                        <Input className="col-6" type="text" id="locatiion" name="locatiion" onChange={this.handleChange} defaultValue={this.tender.locatiion} readOnly={!this.state.edit} required />
+                        <Label htmlFor="location" className="col-4 offset-1">location</Label>
+                        <Input className="col-6" type="text" id="location" name="location" onChange={this.handleChange} defaultValue={this.tender.location} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="Pincode" className="col-4 offset-1">Pincode</Label>
-                        <Input className="col-6" type="text" id="Pincode" name="Pincode" onChange={this.handleChange}  defaultValue={this.tender.Pincode} readOnly={!this.state.edit} required />
+                        <Label htmlFor="pincode" className="col-4 offset-1">pincode</Label>
+                        <Input className="col-6" type="text" id="pincode" name="pincode" onChange={this.handleChange}  defaultValue={this.tender.pincode} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <h4>Critical Dates</h4>
@@ -239,35 +256,35 @@ export default class TenderDetails extends Component {
                         this.state.edit ?
                         <div>
                         <FormGroup className="row">
-                        <Label htmlFor="BidOpeningDate" className="col-4 offset-1">Bid Opening Date</Label>
-                        <Input className="col-6" type="datetime-local" id="BidOpeningDate" name="BidOpeningDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
+                        <Label htmlFor="bidOpeningDate" className="col-4 offset-1">Bid Opening Date</Label>
+                        <Input className="col-6" type="datetime-local" id="bidOpeningDate" name="bidOpeningDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="BidClosingDate" className="col-4 offset-1">Bid Closing Date</Label>
-                        <Input className="col-6" type="datetime-local" id="BidClosingDate" name="BidClosingDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
+                        <Label htmlFor="bidClosingDate" className="col-4 offset-1">Bid Closing Date</Label>
+                        <Input className="col-6" type="datetime-local" id="bidClosingDate" name="bidClosingDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="ResultDate" className="col-4 offset-1">Result Date</Label>
-                        <Input className="col-6" type="datetime-local" id="ResultDate" name="ResultDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
+                        <Label htmlFor="resultDate" className="col-4 offset-1">Result Date</Label>
+                        <Input className="col-6" type="datetime-local" id="resultDate" name="resultDate" onChange={this.handleChange}  readOnly={!this.state.edit} required />
                     </FormGroup>
                         </div>
                         :
                         <div>
                             <FormGroup className="row">
-                        <Label htmlFor="BidOpeningDate" className="col-4 offset-1">Bid Opening Date</Label>
-                        <Input className="col-6" type="text" id="BidOpeningDate" name="BidOpeningDate"  defaultValue={this.tender.BidOpeningDate} readOnly={!this.state.edit} required />
+                        <Label htmlFor="bidOpeningDate" className="col-4 offset-1">Bid Opening Date</Label>
+                        <Input className="col-6" type="text" id="bidOpeningDate" name="bidOpeningDate"  defaultValue={this.tender.bidOpeningDate} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="BidClosingDate" className="col-4 offset-1">Bid Closing Date</Label>
-                        <Input className="col-6" type="text" id="BidClosingDate" name="BidClosingDate"  defaultValue={this.tender.BidClosingDate} readOnly={!this.state.edit} required />
+                        <Label htmlFor="bidClosingDate" className="col-4 offset-1">Bid Closing Date</Label>
+                        <Input className="col-6" type="text" id="bidClosingDate" name="bidClosingDate"  defaultValue={this.tender.bidClosingDate} readOnly={!this.state.edit} required />
                     </FormGroup>
 
                     <FormGroup className="row">
-                        <Label htmlFor="ResultDate" className="col-4 offset-1">Result Date</Label>
-                        <Input className="col-6" type="text" id="ResultDate" name="ResultDate"  defaultValue={this.tender.ResultDate} readOnly={!this.state.edit} required />
+                        <Label htmlFor="resultDate" className="col-4 offset-1">Result Date</Label>
+                        <Input className="col-6" type="text" id="resultDate" name="resultDate"  defaultValue={this.tender.resultDate} readOnly={!this.state.edit} required />
                     </FormGroup>
                         </div>
                     }
@@ -330,7 +347,7 @@ export default class TenderDetails extends Component {
                     }
                     {
                         !this.state.mine ?
-                        <Link to={`/user/`}>
+                        <Link to={`/tender/${this.tender.id}/applyTender`}>
                         <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
                         </Link>
                         :null 

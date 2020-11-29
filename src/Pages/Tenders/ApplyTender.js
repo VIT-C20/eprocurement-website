@@ -1,34 +1,49 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Label, FormGroup,Modal, ModalHeader, ModalBody } from 'reactstrap';
 import "./CSS/createTender.css";
+import axios from 'axios'
 
 export default class ApplyTender extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isModalOpen: false
         }
+        this.bid = {}
         this.documents = []
-        this.document = {
-            documentTitle: '',
-            documentDescription: '',
-            documentLink: ''
-        }
+        this.document = {}
     }
     toggleModal = () => {
         this.setState({ isModalOpen: !this.state.isModalOpen });
     }
 
     handleChange = (event) => {
-        this.setState({
-			[event.target.name]: event.target.value
-		});
+			this.bid[event.target.name] = event.target.value
+    }
+
+    componentWillMount() {
+        console.log(this.props.match.params.tenderId)
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        
+        this.bid = {
+            ...this.bid,
+            tenderId: this.props.match.params.tenderId,
+            profileId: localStorage.UserId,
+            documents: [...this.documents]
+        }
+        console.log(this.bid);
+        axios.post(`/tender/${this.props.match.params.tenderId}/applyBid`, this.bid, {
+            headers: {
+                Authorization: localStorage.IdToken,
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            alert('Bid Submitted')
+        })
+        .catch(err => console.log(err));
     }
 
     addDocument = (event) => {
@@ -50,13 +65,18 @@ export default class ApplyTender extends Component {
 
                     <FormGroup className="row">
                         <Label htmlFor="tenderId" className="col-4 offset-1">Tender ID</Label>
-                        <Input className="col-6" type="text" id="tenderId" name="tenderId" value={localStorage.UserId} readOnly required />
+                        <Input className="col-6" type="text" id="tenderId" name="tenderId" value={this.props.match.params.tenderId} readOnly required />
                     </FormGroup>
 
                     <FormGroup className="row">
                         <Label htmlFor="profileId" className="col-4 offset-1">Your Profile ID</Label>
                         <Input className="col-6" type="text" id="profileId" name="profileId" value={localStorage.UserId} readOnly required />
                     </FormGroup>
+
+                    {/* <FormGroup className="row">
+                        <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
+                        <Input className="col-6" type="text" id="orgChain" name="orgChain" value={this.props.profile.orgChain} readOnly required />
+                    </FormGroup> */}
 
                     <FormGroup className="row">
                         <Label htmlFor="bidDetails" className="col-4 offset-1">Bid Details</Label>
