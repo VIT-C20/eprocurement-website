@@ -2,20 +2,20 @@ import React, { Component } from 'react'
 import {Accordion, Card, Button} from 'react-bootstrap';
 import TenderHistoryCard from './TenderHistoryCard';
 import axios from 'axios'
-const history_list = [
-    {
-        id:1,
-        content:'something here ... '  
-    },
-    {
-        id:2,
-        content:'something here ... ' 
-    },
-    {
-        id:3,
-        content:'something here ... ' 
-    }
-];
+// const history_list = [
+//     {
+//         id:1,
+//         content:'something here ... '  
+//     },
+//     {
+//         id:2,
+//         content:'something here ... ' 
+//     },
+//     {
+//         id:3,
+//         content:'something here ... ' 
+//     }
+// ];
 
 export default class TenderHistory extends Component {
     constructor(props) {

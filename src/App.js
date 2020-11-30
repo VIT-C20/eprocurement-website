@@ -13,6 +13,7 @@ import CreateTender from './Pages/Tenders/CreateTender'
 import ViewBids from './Pages/Tenders/ViewBids'
 import BidDetails from './Pages/Tenders/BidDetails'
 import MyTenders from './Pages/Tenders/MyTenders'
+import MyBids from "./Pages/Tenders/MyBids";
 import './App.css';
 
 export default class App extends Component {
@@ -40,6 +41,7 @@ export default class App extends Component {
             <Route exact path="/home" component={Tenders} />
             <Route exact path="/tender/:tenderId" component={TenderDetails} />
             <Route exact path="/tender/host/:host" component={MyTenders} />
+            <Route exact path="/tender/myBids/:bidderId" component={MyBids} />
             <Route exact path="/tender/:tenderId/history" component={TenderHistory} />
             <Route exact path="/tender/:tenderId/applyTender" component={ApplyTender} />
             <Route exact path="/tender/:tenderId/viewBids" component={ViewBids} />

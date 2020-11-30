@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
 import BidCard from "./BidCard";
 import axios from "axios";
 

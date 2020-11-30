@@ -29,7 +29,7 @@ import {Accordion, Card, Button} from 'react-bootstrap';
 // workDescription: "anything4"
 
 export default function TenderHistoryCard(props){
-    let id = props.history.TxId;
+    // let id = props.history.TxId;
     let timeStamp = props.history.Timestamp;
     let details = props.history.Value;
 
@@ -72,36 +72,6 @@ return(
                                         </div>
                         )
                     }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 </Card.Body>
             </Accordion.Collapse>
         </Card>

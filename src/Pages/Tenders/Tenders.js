@@ -30,7 +30,7 @@ export default class Tenders extends Component {
                 </div>
             }else{
                 return (
-                    <div>
+                    <div style={{margin:"10px",boxSizing:"border-box"}}>
                         {this.state.tenders.map((tender) => <TenderCard tender={tender}/>)}
                     </div>
                 )

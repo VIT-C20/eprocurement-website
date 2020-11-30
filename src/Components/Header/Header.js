@@ -96,12 +96,12 @@ export default class Header extends Component {
     render() {
         return (
             <div className="mb-1">
-            <Navbar dark expand="md" fixed="top">
+            <Navbar className="nav-container" dark expand="md" fixed="top">
                     <div className="container">
-                        <NavbarToggler onClick={this.toggleNav} />
+                        <NavbarToggler id="nav-toggle" onClick={this.toggleNav}/>
                         <Collapse isOpen={this.state.isNavOpen} navbar >
 
-                            <Nav navbar>
+                            <Nav id="nav-items" navbar>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/home" >
                                         <span className="fa fa-home fa-lg"></span> Tenders
@@ -114,10 +114,19 @@ export default class Header extends Component {
                                 </NavItem>
 
                                 {
-                                    (this.state.authenticated) ? (
+                                    (this.state.authenticated && this.state.role === 'Gov') ? (
                                         <NavItem>
-                                            <NavLink className="nav-link" to="/tender/host/:hostId" >
+                                            <NavLink className="nav-link" to={`/tender/host/${localStorage.UserId}`} >
                                                 <span className="fa fa-list fa-lg"></span> My Tenders
+                                            </NavLink>
+                                        </NavItem>
+                                    ): null
+                                }
+                                {
+                                    (this.state.authenticated && this.state.role === 'Bidder') ? (
+                                        <NavItem>
+                                            <NavLink className="nav-link" to={`/tender/myBids/${localStorage.UserId}`} >
+                                                <span className="fa fa-list fa-lg"></span> My Bids
                                             </NavLink>
                                         </NavItem>
                                     ): null

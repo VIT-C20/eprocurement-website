@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
-import TenderCard from "./TenderCard"
+import BidCard from './BidCard'
 import axios from 'axios'
 
-export default class MyTenders extends Component {
+export default class MyBids extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tenders: [],
+            bids: [],
             isLoading: true
         }
     }
 
     componentDidMount() {
-        axios.get(`/tender/host/${localStorage.UserId}`)
+        axios.get(`/tender/myBids/${localStorage.UserId}`)
             .then(res => {
                 this.setState({
-                    tenders: res.data,
+                    bids: res.data,
                     isLoading: false
                 })
             })
@@ -24,14 +24,14 @@ export default class MyTenders extends Component {
 
     render() {
         if (!this.state.isLoading) {
-            if (this.state.tenders.length === 0) {
+            if (this.state.bids.length === 0) {
                 return <div className="container">
-                    <h4>No tenders available currently ...</h4>
+                    <h4>No bids available currently ...</h4>
                 </div>
             } else {
                 return (
-                    <div style={{margin:"10px",boxSizing:"border-box"}}>
-                        {this.state.tenders.map((tender) => <TenderCard tender={tender} />)}
+                    <div className="container">
+                        {this.state.bids.map((bid) => <BidCard bid={bid} />)}
                     </div>
                 )
             }

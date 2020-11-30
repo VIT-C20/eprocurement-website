@@ -38,7 +38,7 @@ export default class Users extends Component {
                 </Breadcrumb>
                 {
                     (!this.state.isLoading)?(
-                        <div className="row">
+                        <div className="row" style={{boxSizing:"border-box"}}>
                         {this.state.users.map((user) => <UserCard user={user}/>)}
                         </div>
                     ): <h4>Loading . . .</h4>

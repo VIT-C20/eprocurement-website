@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem, Form, Input, Button, Label, FormGroup, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {Link} from 'react-router-dom'
-import {tender} from '../../Utils/tenderExample';
+// import {tender} from '../../Utils/tenderExample';
 import axios from 'axios'
 import "./CSS/tenderDetails.css";
 
@@ -287,6 +287,22 @@ export default class TenderDetails extends Component {
                         <Input className="col-6" type="text" id="resultDate" name="resultDate"  defaultValue={this.tender.resultDate} readOnly={!this.state.edit} required />
                     </FormGroup>
                         </div>
+                    }
+
+                    {
+                        (this.tender.winnerBidder)?
+                            <div>
+                                <FormGroup className="row">
+                                    <Label htmlFor="winnerBidder" className="col-4 offset-1">Winner Bidder Id</Label>
+                                    <Input className="col-6" type="text" id="winnerBidder" name="winnerBidder"  defaultValue={this.tender.winnerBidder} readOnly required />
+                                </FormGroup>
+
+                                <FormGroup className="row">
+                                    <Label htmlFor="winningBid" className="col-4 offset-1">Winning Bid Id</Label>
+                                    <Input className="col-6" type="text" id="winningBid" name="winningBid"  defaultValue={this.tender.winningBid} readOnly required />
+                                </FormGroup>
+                            </div>
+                        :null
                     }
                     
                     {

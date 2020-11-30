@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, Label, FormGroup,Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Form, Input, Label, FormGroup } from 'reactstrap';
 import "./CSS/createTender.css";
 import axios from 'axios';
 import "./CSS/bidDetails.css";
@@ -44,6 +44,7 @@ export default class BidDetails extends Component {
         })
         .then(res => {
             console.log(res.data)
+            alert('winner Bidder added')
         })
         .catch(err => console.log(err));
     }
@@ -60,12 +61,12 @@ export default class BidDetails extends Component {
 
                     <FormGroup className="row">
                         <Label htmlFor="tenderId" className="col-4 offset-1">Tender ID</Label>
-                        <Input className="col-6" type="text" id="tenderId" name="tenderId" value={this.bid.tender._id} readOnly required />
+                        <Input className="col-6" type="text" id="tenderId" name="tenderId" value={this.props.match.params.tenderId} readOnly required />
                     </FormGroup>
 
                     <FormGroup className="row">
                         <Label htmlFor="profileId" className="col-4 offset-1">Your Profile ID</Label>
-                        <Input className="col-6" type="text" id="profileId" name="profileId" value={this.bid.bidder} readOnly required />
+                        <Input className="col-6" type="text" id="profileId" name="profileId" value={this.bid.bidder._id} readOnly required />
                     </FormGroup>
 
                     {/* <FormGroup className="row">
@@ -109,7 +110,11 @@ export default class BidDetails extends Component {
                             ))
                             : null
                     }
-                    <button type="submit" onClick={this.addWinnerBidder}>Declare as Winner</button>
+                    {
+                        this.state.myTender?
+                        <button type="submit" onClick={this.addWinnerBidder}>Declare as Winner</button>
+                        :null
+                    }
                 </Form>
 
             </div>

@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 
 export default function TenderCard({ tender }) {
     return (
-        <div key={tender._id} className="container mt-3">
+        <div key={tender._id} className="container" 
+        style={{
+            boxShadow:"0px 1px 5px 1px grey",
+            padding:"0",        
+        }}
+        >
         {console.log(tender)}
             <Card className="text-center">
             <Card.Header>{tender.host.orgName}</Card.Header>
