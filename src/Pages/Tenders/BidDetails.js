@@ -21,12 +21,14 @@ export default class BidDetails extends Component {
             }
         })
         .then(res => {
-            this.bid = res.data
-            this.setState({loading: false})
-            if(res.data.tender.host === localStorage.UserId && !res.data.tender.winnerBidder) {
+            console.log(res.data)
+            this.bid = res.data.bid
+            this.setState({loading: false});
+            
+            if (res.data.tender.host === localStorage.UserId && !res.data.tender.winnerBidder) {
+                
                 this.setState({myTender: true})
             }
-            console.log(this.bid)
             console.log(this.state.myTender)
         })
         .catch(err => console.log(err));
@@ -69,10 +71,7 @@ export default class BidDetails extends Component {
                         <Input className="col-6" type="text" id="profileId" name="profileId" value={this.bid.bidder._id} readOnly required />
                     </FormGroup>
 
-                    {/* <FormGroup className="row">
-                    <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
-                    <Input className="col-6" type="text" id="orgChain" name="orgChain" value={this.props.profile.orgChain} readOnly required />
-                </FormGroup> */}
+                    
 
                     <FormGroup className="row">
                         <Label htmlFor="bidDetails" className="col-4 offset-1">Bid Details</Label>
@@ -83,11 +82,14 @@ export default class BidDetails extends Component {
                         <Label htmlFor="quotation" className="col-4 offset-1">Quotation</Label>
                         <Input className="col-6" type="text" id="quotation" name="quotation" value={this.bid.quotation} readOnly />
                     </FormGroup>
-                    <center><h4>Quotation Documents</h4></center>
+                    
                     {
                         (this.bid.SupportingDocuments.length) ?
                             this.bid.SupportingDocuments.map((document, index) => (
+                                <div>
+                                <center><h4>Quotation Documents</h4></center>
                                 <Form>
+                                    
                                     <FormGroup className="row">
                                         <Label className="offset-1"><h6><u>Document {index + 1}</u></h6></Label>
                                     </FormGroup>
@@ -107,6 +109,7 @@ export default class BidDetails extends Component {
                                             value={document.documentLink} className="col-6" readOnly />
                                     </FormGroup>
                                 </Form>
+                                </div>
                             ))
                             : null
                     }

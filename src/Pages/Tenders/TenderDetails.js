@@ -119,12 +119,12 @@ export default class TenderDetails extends Component {
                             <Link to={`/tender/${this.tender.id}/viewBids`}>
                             <Button color="success"> <span className="fa fa-eye fa-lg"> View Bids</span></Button>
                             </Link>
-                            :
+                            :(localStorage.IdToken) && this.tender.status==="OPEN" ? 
                             <Link to={`/tender/${this.tender.id}/applyTender`}>
                             <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
-                            </Link>
+                            </Link>: null
                         }
-
+                            
                             <Link to={`/tender/${this.tender.id}/history`}>
                             <Button color="warning"> <span className="fa fa-history fa-lg"> History</span></Button>
                             </Link>
@@ -152,7 +152,7 @@ export default class TenderDetails extends Component {
                             <FormGroup className="row">
                                 <Label htmlFor="orgChain" className="col-4 offset-1">Organization Chain</Label>
                                 <Input className="col-4 col-md-5" type="text" id="orgChain" name="orgChain"  disabled value={this.tender.orgChain} required />
-                                <Link to={`/user/`}>
+                                <Link to={`/users/${localStorage.UserId}`}>
                                     <Button title="View Profile" className="ml-1 ml-md-4" color="primary" ><span className="fa fa-address-card-o fa-lg"></span></Button>
                                 </Link>
                             </FormGroup>
@@ -362,9 +362,9 @@ export default class TenderDetails extends Component {
                         :null
                     }
                     {
-                        !this.state.mine ?
+                        !this.state.mine && (localStorage.IdToken) && this.tender.status==="OPEN"?
                         <Link to={`/tender/${this.tender.id}/applyTender`}>
-                        <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
+                            <Button color="success"> <span className="fa fa-check-circle fa-lg"> Apply</span></Button>
                         </Link>
                         :null 
                     }

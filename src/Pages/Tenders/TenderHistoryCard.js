@@ -1,5 +1,7 @@
 import React from 'react';
 import {Accordion, Card, Button} from 'react-bootstrap';
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 // bidClosingDate: "2020-11-28T12:03"
 // bidCount: "0"
@@ -48,30 +50,49 @@ export default function TenderHistoryCard(props){
     console.log(historyKeys);
     console.log(historyValues);
 
-
+    dayjs.extend(relativeTime);
     
 return(
         <Card>
             <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey={props.id+1} >
-                    <p className="text-left">{timeStamp}</p>
+                    {/* <p className="text-left">{timeStamp}</p> */}
+                    <p className="text-left">{dayjs(timeStamp).fromNow()}</p>
                 </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey={props.id+1}>
                 <Card.Body>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Key</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>  
+                        <tbody>
+                        
+                        
                     {
                         historyKeys.map((key, i) => 
 
                                     (historyValues[i] === "")?
-                                        <div>
-                                            <b>{key}</b>: --------     
-                                        </div>
+                                        <tr>
+                                            <th scope="row">{i+1}</th>
+                                            <td>{key}</td>
+                                            <td> - </td>
+                                        </tr>
                                     :
-                                        <div>
-                                            <b>{key}</b>:{historyValues[i]}     
-                                        </div>
+                                        <tr>
+                                            <th scope="row">{i+1}</th>
+                                            <td>{key}</td>
+                                            <td>{historyValues[i]}</td>
+                                        </tr>
+                                        
                         )
                     }
+                    </tbody>                 
+                    </table>
                 </Card.Body>
             </Accordion.Collapse>
         </Card>

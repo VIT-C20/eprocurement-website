@@ -1,13 +1,18 @@
 import React from 'react'
 import {Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 export default function TenderCard({ tender }) {
+    dayjs.extend(relativeTime);
+
     return (
         <div key={tender._id} className="container" 
         style={{
             boxShadow:"0px 1px 5px 1px grey",
-            padding:"0",        
+            padding:"0",    
+            margin:"20px auto",    
         }}
         >
         {console.log(tender)}
@@ -22,7 +27,7 @@ export default function TenderCard({ tender }) {
                 <Button variant="primary">View Details</Button>
                 </Link>
             </Card.Body>
-            <Card.Footer className="text-muted">{tender.createdAt}</Card.Footer>
+            <Card.Footer className="text-muted">{dayjs(tender.createdAt).fromNow()}</Card.Footer>
         </Card>
         </div>
     )

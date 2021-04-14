@@ -1,12 +1,11 @@
 .navbar {
     background:rgb(102, 40, 184) !important;
     opacity:0.8 !important;
-    min-height: 10vh;
+    /* min-height: 10vh; */
 }
 
 .navbar:hover {
     opacity:0.9 !important;
-    /* font-weight: 900 !important; */
 }
 
 .navlink {
@@ -14,13 +13,13 @@
     color:whitesmoke;
 }
 
-
+/* 
 #nav-toggle {
   position: absolute;
   left: 5px; 
   top:5px;
   
-}
+} */
 
 
 Button > span {
@@ -34,8 +33,7 @@ span:hover {
 }
 
 .profile-btn {
-    background-color: rgba(0,200,0,0.8);
-    
+    background-color: rgba(0,200,0,0.8);   
 }
 
 .profile-btn  span{
@@ -43,8 +41,11 @@ span:hover {
 }
 
 @media screen and (max-width:768px){
+    .navbar {
+        min-height: 15vh;
+    }
     #nav-items {
-        padding-top:10vh;
+        /* padding-top:10vh; */
         font-size:1em;
     }
 }

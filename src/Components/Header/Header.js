@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavbarToggler, NavItem, Collapse, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Container, Navbar, Nav, NavbarToggler, NavItem, Collapse, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
@@ -95,16 +95,16 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div className="mb-1">
-            <Navbar className="nav-container" dark expand="md" fixed="top">
-                    <div className="container">
-                        <NavbarToggler id="nav-toggle" onClick={this.toggleNav}/>
+            <div>
+            <Navbar className="nav-container mb-1" dark expand="md" fixed="top">
+                    <Container>
+                        <NavbarToggler className="ml-0" onClick={this.toggleNav}/>
                         <Collapse isOpen={this.state.isNavOpen} navbar >
 
                             <Nav id="nav-items" navbar>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/home" >
-                                        <span className="fa fa-home fa-lg"></span> Tenders
+                                    <span className="fa fa-home fa-lg"></span> Tenders
                                 </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -186,7 +186,7 @@ export default class Header extends Component {
                             )}
                             
                         </Collapse>
-                    </div>
+                    </Container>
                 </Navbar>
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
