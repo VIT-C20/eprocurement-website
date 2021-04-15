@@ -10,7 +10,7 @@ export default class TenderDetails extends Component {
         super(props);
         this.state = {
             mine: false,
-            edit: false,
+            edit: false, 
             isLoading: true,
             isModalOpen: false
         }
@@ -98,6 +98,20 @@ export default class TenderDetails extends Component {
         })
         .catch(err => console.log(err))
         // this.setState({isModalOpen: false})
+    }
+
+    generateOTP = () => {
+        console.log('generate otp')
+        axios.get('/sendOTP', {
+            headers: {
+                Authorization: localStorage.IdToken
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            alert('OTP Sent')
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -309,6 +323,13 @@ export default class TenderDetails extends Component {
                         (this.state.edit)?
             
                             <div className="btn-container">
+                                <Button onClick={this.generateOTP} color="danger">Send OTP</Button>
+                                <FormGroup className="row">
+                                    <Label htmlFor="OTP" className="col-2 mr-2">OTP</Label>
+                                    <Input className="col-6" type="text" id="OTP" name="OTP" onChange={this.handleChange} required />
+                                </FormGroup>
+                        
+                                    
                                 <Button type="submit" value="submit" color="success"><span className="fa fa-paper-plane fa-lg"> Update</span></Button>
 
                                 <Button color="danger" onClick={() => {

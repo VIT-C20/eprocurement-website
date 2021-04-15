@@ -32,6 +32,8 @@ export default class Tenders extends Component {
                 return (
                     <div style={{margin:"10px",boxSizing:"border-box"}}>
                         {this.state.tenders.map((tender) => <TenderCard tender={tender}/>)}
+                        {/* <TenderCard tender={this.state.tenders[0]} />
+                        <TenderCard tender={this.state.tenders[2]}/> */}
                     </div>
                 )
             }

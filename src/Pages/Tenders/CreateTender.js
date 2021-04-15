@@ -28,7 +28,8 @@ export class CreateTender extends Component {
             bidOpeningDate: '',
             bidClosingDate: '',
             resultDate: '',
-            status: 'OPEN'
+            status: 'OPEN',
+            OTP:''
         }
         this.documents = []
         this.document = {}
@@ -70,6 +71,20 @@ export class CreateTender extends Component {
 
     handleAddDocument = (event) => {
         this.document[event.target.name] = event.target.value
+    }
+
+    generateOTP = () => {
+        console.log('generate otp')
+        axios.get('/sendOTP', {
+            headers: {
+                Authorization: localStorage.IdToken
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            alert('OTP Sent')
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -219,6 +234,12 @@ export class CreateTender extends Component {
                     }
                     <div className="btn-container">
                         <Button onClick={this.toggleModal} color="warning"> <span className="fa fa-plus-circle fa-lg"> Add Document</span></Button>
+                                                
+                        <Button onClick={this.generateOTP} color="danger">Send OTP</Button>
+                        <FormGroup className="row">
+                            <Label htmlFor="OTP" className="col-2 mr-2">OTP</Label>
+                            <Input className="col-6" type="text" id="OTP" name="OTP" onChange={this.handleChange} required />
+                        </FormGroup>
 
                         <Button type="submit" value="submit" color="success"><span className="fa fa-paper-plane fa-lg"> Submit</span></Button>
                     </div>

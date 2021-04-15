@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Label, FormGroup } from 'reactstrap';
+import { Form, Input, Label, FormGroup, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import "./CSS/createTender.css";
 import axios from 'axios';
 import "./CSS/bidDetails.css";
@@ -9,7 +9,10 @@ export default class BidDetails extends Component {
         super(props)
         this.state = {
             loading: true,
-            myTender: false
+            myTender: false,
+            OTP: '',
+            isModalOpen: false,
+            otpMessage: ''
         }
         this.bid = {}
     }
@@ -34,10 +37,15 @@ export default class BidDetails extends Component {
         .catch(err => console.log(err));
     }
 
+    toggleModal = () => {
+        this.setState({ isModalOpen: !this.state.isModalOpen });
+    }
+
     addWinnerBidder = (event) => {
         event.preventDefault()
         const payload = {
-            winnerBidderId: this.props.match.params.bidId
+            winnerBidderId: this.props.match.params.bidId,
+            OTP: this.state.OTP
         }
         axios.put(`/tender/${this.props.match.params.tenderId}/addWinnerBidder`, payload, {
             headers: {
@@ -46,9 +54,34 @@ export default class BidDetails extends Component {
         })
         .then(res => {
             console.log(res.data)
+            this.toggleModal()
             alert('winner Bidder added')
         })
         .catch(err => console.log(err));
+    }
+
+    handleChange = (event) => {
+        this.setState({
+			[event.target.name]: event.target.value
+		});
+    }
+
+    generateOTP = (event) => {
+        event.preventDefault()
+        console.log('generate otp')
+        axios.get('/sendOTP', {
+            headers: {
+                Authorization: localStorage.IdToken
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            this.setState({
+                otpMessage: res.data.message,
+                isModalOpen: true
+            })
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -115,11 +148,23 @@ export default class BidDetails extends Component {
                     }
                     {
                         this.state.myTender?
-                        <button type="submit" onClick={this.addWinnerBidder}>Declare as Winner</button>
+                        <button onClick={this.generateOTP}>Declare as Winner</button>
                         :null
                     }
                 </Form>
-
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}> Add Winner</ModalHeader>
+                        <ModalBody>
+                            <h6>{this.state.otpMessage}</h6>
+                        <Form onSubmit={this.addWinnerBidder}>
+                            <FormGroup>
+                                <Label htmlFor="OTP">OTP</Label>
+                                <Input type="text" id="OTP" name="OTP" onChange={this.handleChange} required />
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="success">Add</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }
